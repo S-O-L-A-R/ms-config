@@ -1,0 +1,15 @@
+steps:
+#step 1
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/S-O-L-A-R/ms-config.git']
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['checkout', '$BRANCH_NAME']
+  dir: 'ms-config'
+
+#step 3
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=${_GKE_COMPUTE_ZONE}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER_NAME}'
