@@ -9,7 +9,7 @@ steps:
 
 #step 3
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['create', 'configmap', 'ms-config', '--from-file=$BRANCH_NAME/', '-o', 'yaml', '--dry-run', '|', 'gcr.io/cloud-builders/kubectl', 'replace', '-f', '-']
+  args: ['create', 'configmap', 'ms-config', '--from-file=$BRANCH_NAME/', '-o', 'yaml', '--dry-run', '|', 'gcr.io/cloud-builders/kubectl replace -f -']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=${_GKE_COMPUTE_ZONE}'
   - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER_NAME}'
